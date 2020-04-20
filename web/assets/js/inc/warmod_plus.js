@@ -633,7 +633,7 @@ function serverModal(edit, el){
 					swal({
 						type: "success",
 						title: "Success!",
-						text: "Token has been saved.",
+						text: "Server has been saved.",
 						buttonsStyling: false,
 						confirmButtonClass: "btn btn-success mx-1",
 						cancelButtonClass: "btn btn-danger mx-1",
