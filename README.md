@@ -23,7 +23,7 @@ An improved CSGO match system based on [Warmod by versatile_bfg](https://forums.
 - Rewrited damage report, make it easier to configure. (You don't need to edit convars anymore, just simply edit it in phrases.txt)
 - Server must have token to use Warmod+ (I made this to prevent some ni**ers steal my work.)
 
-## Requirement
+## Requirements
 * A Web server with PHP 7.0 or higher
 * ImageMagick extension for PHP.
 * A MySQL server.
@@ -34,6 +34,7 @@ An improved CSGO match system based on [Warmod by versatile_bfg](https://forums.
 * [SMBZ2](https://forums.alliedmods.net/showthread.php?t=175063)
 * [Sourcemod CURL (Windows)](https://forums.alliedmods.net/showpost.php?p=2485934&postcount=193)
 * [Sourcemod CURL (Linux)](https://forums.alliedmods.net/showpost.php?p=2197681&postcount=101)
+* [REST in Pawn](https://forums.alliedmods.net/showthread.php?t=298024)
 
 ## Wiki
 For more informations please see [Wiki](https://github.com/rogeraabbccdd/Warmod-Plus/wiki)
