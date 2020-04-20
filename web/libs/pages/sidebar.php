@@ -153,7 +153,7 @@
 				if(!empty($discord)){
 					?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?=$discord?>">
+							<a class="nav-link" href="<?=$discord?>" target="_blank">
 								<i class="fab fa-2x fa-discord"></i>
 								<p> Discord </p>
 							</a>
