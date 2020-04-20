@@ -22,7 +22,7 @@
 		static function emptyCard()
 		{
 			?>
-				<div class="col-12 col-md-6 col-lg-6">
+				<div class="col-xl-4 col-md-6 col-12">
 					<div class="card card-product">
 						<div class="card-header card-header-image" data-header-animation="true">
 							<img class='img' src='./assets/img/maps/unknown.jpg' />
@@ -60,7 +60,7 @@
 			$t_name = $this->t_name;
 			if(empty($t_name))	$t_name = "Unknown";
 			?>
-				<div class="col-lg-6 col-xl-4 col-md-6 col-12 <?=($index)?"d-xl-last-none":""?>">
+				<div class="col-xl-4 col-md-6 col-12 <?=($index)?"d-xl-last-none":""?>">
 					<a href="./showmatch.php?id=<?=$this->id?>">
 						<div class="card card-product">
 							<div class="card-header card-header-image" data-header-animation="true">
