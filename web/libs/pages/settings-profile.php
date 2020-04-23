@@ -16,7 +16,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="form-group bmd-form-group">
-                                        <input class="form-control" type="url" name="facebook" value="<?=$player->fb?>">
+                                        <input class="form-control" type="url" name="facebook" value="<?=isset($player) ? $player->fb : ''?>">
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="form-group bmd-form-group">
-                                        <input class="form-control" type="url" name="twitter" value="<?=$player->twitter?>">
+                                        <input class="form-control" type="url" name="twitter" value="<?=isset($player) ? $player->twitter : ''?>">
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="form-group bmd-form-group">
-                                        <input class="form-control" type="url" name="twitch" value="<?=$player->twitch?>">
+                                        <input class="form-control" type="url" name="twitch" value="<?=isset($player) ? $player->twitch : ''?>">
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <div class="form-group bmd-form-group">
-                                        <input class="form-control" type="url" name="youtube" value="<?=$player->youtube?>">
+                                        <input class="form-control" type="url" name="youtube" value="<?=isset($player) ? $player->youtube : ''?>">
                                     </div>
                                 </div>
                             </div>

@@ -24,7 +24,9 @@
 	$sth = $pdo->prepare($sql);
 	$sth->execute($input);
 	$result = $sth->fetchAll();
-	$player = new Player($result[0]);
+	if(!empty($result)){
+		$player = new Player($result[0]);
+	}
 
 	$sql = "SELECT * FROM ".$team_table." WHERE leader = :id";
 	$sth = $pdo->prepare($sql);
