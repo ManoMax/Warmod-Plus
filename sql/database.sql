@@ -207,8 +207,7 @@ CREATE TABLE `wm_results` (
   `ct_overtime_score` tinyint(3) UNSIGNED NOT NULL,
   `demo` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `competition` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
