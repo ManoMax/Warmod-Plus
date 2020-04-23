@@ -36,7 +36,7 @@
 		$sth = $pdo->prepare($sql);
 		$sth->execute($input);
 		$result = $sth->fetchAll();
-		$user = new Player($result[0]);
+		if(!empty($result))	$user = new Player($result[0]);
 	}
 ?>
 <div class="sidebar" data-color="rose" data-background-color="black" data-image="<?=$sideImage?>">
@@ -82,7 +82,7 @@
 										</a>
 									</li>
 									<?php
-										if(!empty($user->team)){
+										if(!empty($result) && !empty($user->team)){
 											?>
 												<li class="nav-item">
 													<a class="nav-link" href="./showteam.php?id=<?=$user->team?>">
