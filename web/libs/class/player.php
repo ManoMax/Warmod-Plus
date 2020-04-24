@@ -318,7 +318,15 @@
 			else	$this->clutch_won = round($this->clutch_won/$this->last_alive, 2);
 			?>
 				<tr>
-					<td class='icon' data-th="Country"><img src='./assets/img/flags/<?=$this->cc?>.png' width='25'/></td>
+					<td class='icon' data-th="Country">
+						<?php
+							if(!empty($this->cc)) {
+								?>
+								<img src='./assets/img/flags/<?=$this->cc?>.png' width='25'/>
+								<?php
+							}
+						?>
+					</td>
 					<td class='text-left text-match-name font-weight-bold' data-th="Name">
 						<a href="./showplayer.php?id=<?=$this->steam_id_64?>" class="text-<?=($this->team == 1)?"ct":"t"?>"><?=$name?></a>
 					</td>
