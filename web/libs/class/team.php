@@ -1,125 +1,125 @@
 <?php
 	$teamSQL = "
 	SELECT name, leader, steam,
-	   b.rank AS rank,
-	   wlr,
-	   win,
-	   lose,
-	   draw,
-	   id, logo
+	b.rank AS rank,
+	wlr,
+	win,
+	lose,
+	draw,
+	id, logo
 	FROM
-	   (
-		  SELECT
-			 a.rank AS 'Rank',
-			 a.wlr,
-			 a.name,
-			 a.leader,
-			 a.steam,
-			 a.win,
-			 a.lose,
-			 a.draw,
-			 a.id,
-			 a.logo
-		  FROM
-			 (
+	(
+		SELECT
+			a.rank AS 'Rank',
+			a.wlr,
+			a.name,
+			a.leader,
+			a.steam,
+			a.win,
+			a.lose,
+			a.draw,
+			a.id,
+			a.logo
+		FROM
+			(
 				SELECT
-				   stats.name,
-				   stats.steam,
-				   stats.leader,
-				   stats.win,
-				   stats.lose,
-				   stats.draw,
-				   stats.id,
-				   stats.logo,
-				   Ifnull(TRUNCATE (stats.win / stats.win + stats.lose + stats.draw, 2), stats.win) AS 'wlr',
-				   @prev := @curr,
-				   @curr := Ifnull(TRUNCATE (stats.win / stats.win + stats.lose + stats.draw, 2), stats.win),
-				   @rank := IF(@prev = @curr, @rank, @rank + 1) AS rank 
+				stats.name,
+				stats.steam,
+				stats.leader,
+				stats.win,
+				stats.lose,
+				stats.draw,
+				stats.id,
+				stats.logo,
+				Ifnull(TRUNCATE (stats.win / stats.win + stats.lose + stats.draw, 2), stats.win) AS 'wlr',
+				@prev := @curr,
+				@curr := Ifnull(TRUNCATE (stats.win / stats.win + stats.lose + stats.draw, 2), stats.win),
+				@rank := IF(@prev = @curr, @rank, @rank + 1) AS rank 
 				FROM
-				   (
-					  SELECT
-						 @curr := NULL,
-						 @prev := NULL,
-						 @rank := 0 
-				   )
-				   s,
-				   (
-					  SELECT
-						 ".$team_table.".name,
-						 ".$team_table.".id,
-						 ".$team_table.".steam,
-						 ".$team_table.".leader,
-						 ".$team_table.".logo,
-						 Count( 
-						 CASE
+				(
+					SELECT
+						@curr := NULL,
+						@prev := NULL,
+						@rank := 0 
+				)
+				s,
+				(
+					SELECT
+						".$team_table.".name,
+						".$team_table.".id,
+						".$team_table.".steam,
+						".$team_table.".leader,
+						".$team_table.".logo,
+						Count( 
+						CASE
 							WHEN
-							   (
-								  ".$result_table.".t_id = ".$team_table.".id 
-								  AND ".$result_table.".t_overall_score > ".$result_table.".ct_overall_score 
-							   )
+							(
+								".$result_table.".t_id = ".$team_table.".id 
+								AND ".$result_table.".t_overall_score > ".$result_table.".ct_overall_score 
+							)
 							THEN
-							   1 
+							1 
 							WHEN
-							   (
-								  ".$result_table.".ct_id = ".$team_table.".id 
-								  AND ".$result_table.".ct_overall_score > ".$result_table.".t_overall_score 
-							   )
+							(
+								".$result_table.".ct_id = ".$team_table.".id 
+								AND ".$result_table.".ct_overall_score > ".$result_table.".t_overall_score 
+							)
 							THEN
-							   1 
+							1 
 							ELSE
-							   NULL 
-						 END
+							NULL 
+						END
 	) AS 'win', Count( 
-						 CASE
+						CASE
 							WHEN
-							   (
-								  ".$result_table.".ct_id = ".$team_table.".id 
-								  AND ".$result_table.".t_overall_score > ".$result_table.".ct_overall_score 
-							   )
+							(
+								".$result_table.".ct_id = ".$team_table.".id 
+								AND ".$result_table.".t_overall_score > ".$result_table.".ct_overall_score 
+							)
 							THEN
-							   1 
+							1 
 							WHEN
-							   (
-								  ".$result_table.".t_id = ".$team_table.".id
-								  AND ".$result_table.".ct_overall_score > ".$result_table.".t_overall_score 
-							   )
+							(
+								".$result_table.".t_id = ".$team_table.".id
+								AND ".$result_table.".ct_overall_score > ".$result_table.".t_overall_score 
+							)
 							THEN
-							   1 
+							1 
 							ELSE
-							   NULL 
-						 END
+							NULL 
+						END
 	) AS 'lose', COUNT( 
-						 CASE
+						CASE
 							WHEN
-							   (
-								  ".$result_table.".t_overall_score = ".$result_table.".ct_overall_score 
-								  AND ".$result_table.".ct_id = ".$team_table.".id 
-							   )
+							(
+								".$result_table.".t_overall_score = ".$result_table.".ct_overall_score 
+								AND ".$result_table.".ct_id = ".$team_table.".id 
+							)
 							THEN
-							   1 
+							1 
 							WHEN
-							   (
-								  ".$result_table.".t_overall_score = ".$result_table.".ct_overall_score 
-								  AND ".$result_table.".t_id = ".$team_table.".id 
-							   )
+							(
+								".$result_table.".t_overall_score = ".$result_table.".ct_overall_score 
+								AND ".$result_table.".t_id = ".$team_table.".id 
+							)
 							THEN
-							   1 
+							1 
 							ELSE
-							   NULL 
-						 END
+							NULL 
+						END
 	) AS 'draw' 
-					  FROM
-						 ".$result_table.", ".$team_table." 
-					  GROUP BY
-						 ".$team_table.".name 
-				   )
-				   stats 
+					FROM
+						".$result_table.", ".$team_table." 
+					GROUP BY
+						".$team_table.".name 
+				)
+				stats 
 				ORDER BY
-				   wlr DESC 
-			 )
-			 a 
-	   )
-	   b";
+				wlr DESC 
+			)
+			a 
+	)
+	b";
 	
 	$teamMatchSQL = "
 		SELECT
@@ -242,6 +242,9 @@
 		ORDER BY
 			rws
 		DESC";
+	
+	$teamMemberSQL2 = "SELECT ".$player_table.".steam_id_64 FROM ".$player_table." 
+	WHERE ".$player_table.".steam_id_64 NOT IN (SELECT ".$stats_table.".steam_id_64 FROM ".$stats_table.") AND ".$player_table.".team = :id";
 
 	class Team
 	{

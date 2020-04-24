@@ -25,7 +25,7 @@
 	$input = array(
 		":id" => $id,
 	);
-	$sql = $teamSQL." WHERE id = :id";
+	$sql = "SELECT * FROM ".$team_table." WHERE id = :id";
 	$sth = $pdo->prepare($sql);
 	$sth->execute($input);
 	$result = $sth->fetchAll();
@@ -34,27 +34,42 @@
 		exit;
 	}
 	else{
-		$team = new Team($result[0]);
+		$input = array(
+			":id" => $id,
+		);
+		$sql = $teamSQL." WHERE id = :id";
+		$sth = $pdo->prepare($sql);
+		$sth->execute($input);
+		$result2 = $sth->fetchAll();
+		if(!empty($result2))	$team = new Team($result2[0]);
+		else	$team = new Team($result[0]);
 	}
 
-	// member who has record
+	// team members
+	$input = array(
+		":id" => $id,
+	);
 	$sth = $pdo->prepare($teamMemberSQL);
 	$sth->execute($input);
-	$members = $sth->fetchAll();
-	
-	$sth = $pdo->prepare($teamMemberSQL);
-	$sth->execute($input);
-	$steamids = $sth->fetchAll(PDO::FETCH_COLUMN, 1);
+	$member1 = $sth->fetchAll();
+	$sid1 = array();
+	foreach($member1 as $m) {
+		array_push($sid1, $m["steam_id_64"]);
+	}
+	$sth->fetchAll(PDO::FETCH_COLUMN, 1);
 
-	// member who doesn't have any record
+	$input = array(
+		":id" => $id,
+	);
 	$sth = $pdo->prepare($teamMemberSQL2);
 	$sth->execute($input);
-	$members2 = $sth->fetchAll();
+	$member2 = $sth->fetchAll();
+	$sid2 = array();
+	foreach($member2 as $m) {
+		array_push($sid2, $m["steam_id_64"]);
+	}
 
-	$sth = $pdo->prepare($teamMemberSQL2);
-	$sth->execute($input);
-	$steamids = array_merge($steamids, $sth->fetchAll(PDO::FETCH_COLUMN, 0));
-	
+	$steamids = array_merge($sid1, $sid2);
 	$data = SteamData::GetData($SteamAPI_Key, $steamids);
 ?>
 <html lang="en">
@@ -105,7 +120,7 @@
 										<img src="<?=$team->logo?>" class="rounded" height="124px">
 									</div>
 									<div class="col-6 text-left align-self-center">
-										<h2>Team</h2>
+										<h2>Team Name</h2>
 										<h3 class="mt-1"><?=(!empty($team->name))?$team->name:"Unknown"?></h3>
 									</div>
 								</div>
@@ -178,7 +193,9 @@
 										</div>
 										<p class="card-category">Matches</p>
 										<h3 class="card-title" style="padding-bottom:10px;">
-											<?=$team->win?> W / <?=$team->lose?> L / <?=$team->draw?> D
+											<?=(!empty($team->win)) ? $team->win : 0?> W / 
+											<?=(!empty($team->lose)) ? $team->lose : 0?> L / 
+											<?=(!empty($team->draw)) ? $team->draw : 0?> D
 										</h3>
 									</div>
 								</div>
@@ -221,7 +238,7 @@
 												</thead>
 												<tbody>
 													<?php
-														foreach($members as $row){
+														foreach($member1 as $row){
 															$player = new Player($row);
 															?>
 															<tr>
@@ -237,21 +254,23 @@
 															</tr>
 															<?php
 														}
-														foreach($members2 as $row){
-															$player = new Player($row);
-															?>
-															<tr>
-																<td><?=($player->steam_id_64 == $team->leader)?"Leader":"Member"?></td>
-																<td><?=$data["name"][$player->steam_id_64]?></td>
-																<td>Unranked</td>
-																<td>0.00</td>
-																<td>0%</td>
-																<td>0%</td>
-																<td>
-																	<a href="./showplayer.php?id=<?=$player->steam_id_64?>">View</a>
-																</td>
-															</tr>
-															<?php
+														foreach($member2 as $row){
+															if(!in_array_r($row["steam_id_64"], $member1)) {
+																	$player = new Player($row);
+																	?>
+																	<tr>
+																		<td><?=($player->steam_id_64 == $team->leader)?"Leader":"Member"?></td>
+																		<td><?=$data["name"][$player->steam_id_64]?></td>
+																		<td>Unranked</td>
+																		<td>0.00</td>
+																		<td>0.00</td>
+																		<td>0.00</td>
+																		<td>
+																			<a href="./showplayer.php?id=<?=$player->steam_id_64?>">View</a>
+																		</td>
+																	</tr>
+																	<?php
+																}
 														}
 													?>
 												</tbody>
@@ -384,23 +403,6 @@
 	<script src="./assets/js/core/material-dashboard.min.js" type="text/javascript"></script>
 	<!--  Warmod+ JS    -->
 	<script src="./assets/js/inc/warmod_plus.js" type="text/javascript"></script>
-	<?php
-		// rws chart
-		$sql = "SELECT * FROM ".$stats_table." WHERE steam_id_64 = :id ORDER BY match_id DESC LIMIT 7";
-		$sth = $pdo->prepare($sql);
-		$sth->execute($input);
-		$result = $sth->fetchAll();
-		$num = count($result);
-		if($num > 0 && !empty($player)){
-			$i = $num;
-			$rws_change[$i] = $player->rws;
-			foreach($result as $row){
-				$mid[$i] = $row['match_id'];
-				$rws_change[$i-1] = $rws_change[$i] - $row['rws'];
-				$i--;
-			}
-		}
-	?>
 	<script>
 		// Matches
 		let matchTable = $('#matchTable').DataTable( {
