@@ -142,23 +142,23 @@
 								</div>
 							</div>
 							<div class="col-12 col-lg-12 col-xl-4 mt-4 mt-xl-0 text-center align-self-center">
-								<a class="btn btn-just-icon text-white <?=(!empty($team->steam))?"btn-github":"btn-twitch"?>" href="<?=(!empty($team->steam))?$team->steam:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($team->steam))?"btn-github":"btn-twitch"?>" target="_blank" href="<?=(!empty($team->steam))?$team->steam:"#"?>">
 									<i class="fab fa-steam-symbol"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($team->fb))?"btn-facebook":"btn-twitch"?>" href="<?=(!empty($team->fb))?$team->fb:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($team->fb))?"btn-facebook":"btn-twitch"?>" target="_blank" href="<?=(!empty($team->fb))?$team->fb:"#"?>">
 									<i class="fab fa-facebook"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($team->twitter))?"btn-twitter":"btn-twitch"?>" href="<?=(!empty($team->twitter))?$team->twitter:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($team->twitter))?"btn-twitter":"btn-twitch"?>" target="_blank" href="<?=(!empty($team->twitter))?$team->twitter:"#"?>">
 									<i class="fab fa-twitter"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($team->twitch))?"btn-primary":"btn-twitch"?>" href="<?=(!empty($team->twitch))?$team->twitch:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($team->twitch))?"btn-primary":"btn-twitch"?>" target="_blank" href="<?=(!empty($team->twitch))?$team->twitch:"#"?>">
 									<i class="fab fa-twitch"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($team->youtube))?"btn-youtube":"btn-twitch"?>" href="<?=(!empty($team->youtube))?$team->youtube:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($team->youtube))?"btn-youtube":"btn-twitch"?>" target="_blank" href="<?=(!empty($team->youtube))?$team->youtube:"#"?>">
 									<i class="fab fa-youtube"></i>
 								</a>
 							</div>

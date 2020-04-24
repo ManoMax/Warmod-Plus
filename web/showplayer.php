@@ -186,19 +186,19 @@
 									<i class="fab fa-steam-symbol"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($player->fb))?"btn-facebook":"btn-twitch"?>" href="<?=(!empty($player->fb))?$player->fb:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($player->fb))?"btn-facebook":"btn-twitch"?>" target="_blank" href="<?=(!empty($player->fb))?$player->fb:"#"?>">
 									<i class="fab fa-facebook"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($player->twitter))?"btn-twitter":"btn-twitch"?>" href="<?=(!empty($player->twitter))?$player->twitter:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($player->twitter))?"btn-twitter":"btn-twitch"?>" target="_blank" href="<?=(!empty($player->twitter))?$player->twitter:"#"?>">
 									<i class="fab fa-twitter"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($player->twitch))?"btn-primary":"btn-twitch"?>" href="<?=(!empty($player->twitch))?$player->twitch:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($player->twitch))?"btn-primary":"btn-twitch"?>" target="_blank" href="<?=(!empty($player->twitch))?$player->twitch:"#"?>">
 									<i class="fab fa-twitch"></i>
 								</a>
 								&emsp;
-								<a class="btn btn-just-icon text-white <?=(!empty($player->youtube))?"btn-youtube":"btn-twitch"?>" href="<?=(!empty($player->youtube))?$player->youtube:"#"?>">
+								<a class="btn btn-just-icon text-white <?=(!empty($player->youtube))?"btn-youtube":"btn-twitch"?>" target="_blank" href="<?=(!empty($player->youtube))?$player->youtube:"#"?>">
 									<i class="fab fa-youtube"></i>
 								</a>
 							</div>
