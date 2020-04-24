@@ -29,7 +29,7 @@
 	$sth = $pdo->prepare($sql);
 	$sth->execute($input);
 	$result = $sth->fetchAll();
-	if(count($result) == 0){
+	if(empty($result)){
 		echo "<script type='text/javascript'>alert('Invalid Team ID');window.history.back();</script>";
 		exit;
 	}
@@ -70,6 +70,7 @@
 	}
 
 	$steamids = array_merge($sid1, $sid2);
+	$steamids = array_unique($steamids);
 	$data = SteamData::GetData($SteamAPI_Key, $steamids);
 ?>
 <html lang="en">
