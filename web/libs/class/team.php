@@ -1,6 +1,6 @@
 <?php
 	$teamSQL = "
-	SELECT name, leader, steam,
+	SELECT name, leader, steam, fb, twitter, twitch, status, 
 	b.rank AS rank,
 	wlr,
 	win,
@@ -15,6 +15,10 @@
 			a.name,
 			a.leader,
 			a.steam,
+			a.fb,
+			a.twitter,
+			a.twitch,
+			a.status, 
 			a.win,
 			a.lose,
 			a.draw,
@@ -25,6 +29,10 @@
 				SELECT
 				stats.name,
 				stats.steam,
+				stats.fb,
+				stats.twitter,
+				stats.twitch,
+				stats.status, 
 				stats.leader,
 				stats.win,
 				stats.lose,
@@ -50,6 +58,10 @@
 						".$team_table.".steam,
 						".$team_table.".leader,
 						".$team_table.".logo,
+						".$team_table.".fb,
+						".$team_table.".twitter,
+						".$team_table.".twitch,
+						".$team_table.".status, 
 						Count( 
 						CASE
 							WHEN
