@@ -1,8 +1,8 @@
-// Your Web URL
-#define siteLocation "http://your.warmod.website/"
-// Your Discord webhook URL
+// Your Warmod+ Website URL 
+#define siteLocation "http://your.warmod.website"
+// Your Discord Webhook URL
 #define dsicord_webhook ""
-// Your ftp url
-#define demoftp "yourftp:21"
-// Your Web API url, should be something like http://your.warmod.website/api/
+// Your FTP URL
+#define demoftp "myftp.com:21"
+// Your Web API URL
 #define APIURL "http://your.warmod.website/api/"
