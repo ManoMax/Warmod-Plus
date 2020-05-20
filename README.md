@@ -28,7 +28,7 @@ An improved CSGO match system based on [Warmod by versatile_bfg](https://forums.
 * ImageMagick extension for PHP.
 * A MySQL server.
 * [Steam API key](https://steamcommunity.com/dev/apikey)
-* [Discord API](https://forums.alliedmods.net/showthread.php?t=292448)
+* [Discord API](https://github.com/Deathknife/sourcemod-discord)
 * [SteamWorks](https://forums.alliedmods.net/showthread.php?t=229556)
 * [SMJansson](https://forums.alliedmods.net/showthread.php?t=184604)
 * [SMBZ2](https://forums.alliedmods.net/showthread.php?t=175063)
